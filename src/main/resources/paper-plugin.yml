@@ -1,0 +1,6 @@
+name: LightItUp
+version: '1.0'
+main: me.lukiiy.lightItUp.LightItUp
+api-version: '1.21'
+authors: [ Lukiiy ]
+description: Full bright, but as a paper plugin.

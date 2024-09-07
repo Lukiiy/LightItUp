@@ -1,0 +1,15 @@
+msg: # [Formatted with MiniMessage]
+  toggleOn: "<green>Lights on!"
+  toggleOff: "<red>Lights off!"
+  listHeader: "<yellow>Players with lights on:"
+  listDisplay: "<gray>- <reset>(player)"
+  listEmpty: "<red>There are no players using /light."
+  nonPlayer: "<red>This command can only be used by players."
+sfx:
+  id: "block.lever.click" # Leave blank to disable
+  volume: 1 # Between 0 and 1
+  pitchOn: 0.6 # Between 0 and 1
+  pitchOff: 0.3 # Between 0 and 1
+aliases:
+  toggle: ["togglelight"]
+  list: [] # Example: ["listlight", "listofpeoplewithlight"]
