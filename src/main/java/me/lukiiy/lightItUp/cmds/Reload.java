@@ -17,18 +17,18 @@ public class Reload implements BasicCommand {
     @Override
     public void execute(@NotNull CommandSourceStack commandSourceStack, @NotNull String[] strings) {
         CommandSender sender = commandSourceStack.getSender();
-        if (!canUse(sender)) {
-            sender.sendMessage(Bukkit.permissionMessage());
-            return;
-        }
 
-        LightItUp.getInstance().setupConfig();
-        sender.sendMessage(Component.text(LightItUp.getInstance().getName() + " messages reload complete!").color(NamedTextColor.GREEN));
+        LightItUp.getInstance().reloadConfig();
+        sender.sendMessage(Component.text("LightItUp Messages Reload complete!").color(NamedTextColor.GREEN));
     }
 
     @Override
-    public boolean canUse(@NotNull CommandSender sender) {return BasicCommand.super.canUse(sender);}
+    public boolean canUse(@NotNull CommandSender sender) {
+        return BasicCommand.super.canUse(sender);
+    }
 
     @Override
-    public @Nullable String permission() {return "lightitup.reload";}
+    public @Nullable String permission() {
+        return "lightitup.reload";
+    }
 }

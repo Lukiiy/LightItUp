@@ -16,13 +16,13 @@ public class Listen implements Listener {
         if (!(e.getItem().getType() == Material.MILK_BUCKET)) return;
         Bukkit.getScheduler().runTaskLater(LightItUp.getInstance(), () -> {
             Player p = e.getPlayer();
-            if (LightItUp.isPlayerToggled(p)) p.addPotionEffect(LightItUp.EFFECT);
+            if (LightItUp.getInstance().isPlayerToggled(p)) p.addPotionEffect(LightItUp.EFFECT);
         }, 5L);
     }
 
     @EventHandler
     public void respawn(PlayerPostRespawnEvent e) {
         Player p = e.getPlayer();
-        if (LightItUp.isPlayerToggled(p)) p.addPotionEffect(LightItUp.EFFECT);
+        if (LightItUp.getInstance().isPlayerToggled(p)) p.addPotionEffect(LightItUp.EFFECT);
     }
 }

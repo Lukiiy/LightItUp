@@ -17,20 +17,18 @@ public class Toggle implements BasicCommand {
     public void execute(@NotNull CommandSourceStack commandSourceStack, @NotNull String[] strings) {
         CommandSender sender = commandSourceStack.getSender();
         if (!(sender instanceof Player player)) {
-            sender.sendMessage(LightItUp.msg("nonPlayer"));
+            sender.sendMessage(LightItUp.getInstance().msg("nonPlayer"));
             return;
         }
 
-        boolean isToggled = LightItUp.togglePlayer(player);
+        boolean isToggled = LightItUp.getInstance().toggle(player);
+        sender.sendMessage(LightItUp.getInstance().msg(isToggled ? "toggleOn" : "toggleOff"));
 
-        String sfxId = LightItUp.confString("sfx.id");
-        float sfxVolume = (float) LightItUp.configFile().getDouble("sfx.volume");
-        float sfxPitch = isToggled ? LightItUp.floatValue("sfx.pitchOn") : LightItUp.floatValue("sfx.pitchOff");
+        String sfxId = LightItUp.getInstance().getConfig().getString("sfx.id");
+        if (sfxId != null && !sfxId.isEmpty()) player.playSound(player, sfxId, validFloat("volume"), isToggled ? validFloat("pitchOn") : validFloat("pitchOff"));
+    }
 
-        sender.sendMessage(LightItUp.msg(isToggled ? "toggleOn" : "toggleOff"));
-        if (!sfxId.isEmpty()) player.playSound(player, sfxId, sfxVolume, sfxPitch);
-
-        if (isToggled) player.addPotionEffect(LightItUp.EFFECT);
-        else player.removePotionEffect(PotionEffectType.NIGHT_VISION);
+    private float validFloat(String path) {
+        return (float) Math.clamp(LightItUp.getInstance().getConfig().getDouble("sfx." + path), 0, 1);
     }
 }

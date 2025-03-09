@@ -1,6 +1,6 @@
 msg: # [Formatted with MiniMessage]
-  toggleOn: "<green>Lights on!"
-  toggleOff: "<red>Lights off!"
+  toggleOn: "<c:#b5ff54>Lights on!"
+  toggleOff: "<c:#ff7f54>Lights off!"
   listHeader: "<yellow>Players with lights on:"
   listDisplay: "<gray>- <reset>(player)"
   listEmpty: "<red>There are no players using /light."
