@@ -5,13 +5,9 @@ import io.papermc.paper.command.brigadier.CommandSourceStack;
 import me.lukiiy.lightItUp.LightItUp;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Collection;
-import java.util.Collections;
 
 public class Reload implements BasicCommand {
     @Override

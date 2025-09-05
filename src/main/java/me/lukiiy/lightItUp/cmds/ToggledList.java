@@ -10,22 +10,22 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ToggledList implements BasicCommand {
     @Override
     public void execute(@NotNull CommandSourceStack commandSourceStack, @NotNull String[] strings) {
         CommandSender sender = commandSourceStack.getSender();
-        boolean hasPlayers = false;
+        List<Player> toggled = Bukkit.getOnlinePlayers().stream().filter(LightItUp.getInstance()::isPlayerToggled).collect(Collectors.toUnmodifiableList());
 
-        sender.sendMessage(LightItUp.getInstance().msg("listHeader"));
-
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            if (LightItUp.getInstance().isPlayerToggled(player)) {
-                hasPlayers = true;
-                sender.sendMessage(LightItUp.getInstance().msg("listDisplay").replaceText(TextReplacementConfig.builder().matchLiteral("(player)").replacement(player.displayName()).build()));
-            }
+        if (toggled.isEmpty()) {
+            sender.sendMessage(LightItUp.getInstance().msg("listEmpty"));
+            return;
         }
 
-        if (!hasPlayers) sender.sendMessage(LightItUp.getInstance().msg("listEmpty"));
+        sender.sendMessage(LightItUp.getInstance().msg("listHeader"));
+        toggled.forEach(player -> sender.sendMessage(LightItUp.getInstance().msg("listDisplay").replaceText(TextReplacementConfig.builder().matchLiteral("(player)").replacement(player.displayName()).build())));
     }
 
     @Override
